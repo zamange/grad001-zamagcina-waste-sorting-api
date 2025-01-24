@@ -2,6 +2,7 @@ package com.enviro.assessment.grad001.zamagcina_ngeyane.controller;
 
 import com.enviro.assessment.grad001.zamagcina_ngeyane.entity.WasteCategory;
 import com.enviro.assessment.grad001.zamagcina_ngeyane.service.WasteCategoryService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,14 +32,15 @@ public class WasteCategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<WasteCategory> addCategory(@RequestBody WasteCategory wasteCategory) {
+    public ResponseEntity<WasteCategory> addCategory(@Valid @RequestBody WasteCategory wasteCategory) {
         return new ResponseEntity<>(wasteCategoryService.addCategory(wasteCategory), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<WasteCategory> updateCategory(@PathVariable Long id, @RequestBody WasteCategory wasteCategory) {
+    public ResponseEntity<WasteCategory> updateCategory(@PathVariable Long id, @Valid @RequestBody WasteCategory wasteCategory) {
         return ResponseEntity.ok(wasteCategoryService.updateCategory(id, wasteCategory));
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteCategory(@PathVariable Long id) {

@@ -2,6 +2,7 @@ package com.enviro.assessment.grad001.zamagcina_ngeyane.controller;
 
 import com.enviro.assessment.grad001.zamagcina_ngeyane.entity.DisposalGuideline;
 import com.enviro.assessment.grad001.zamagcina_ngeyane.service.DisposalGuidelineService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,14 +37,15 @@ public class DisposalGuidelineController {
     }
 
     @PostMapping
-    public ResponseEntity<DisposalGuideline> addGuideline(@RequestBody DisposalGuideline guideline) {
+    public ResponseEntity<DisposalGuideline> addGuideline(@Valid @RequestBody DisposalGuideline guideline) {
         return new ResponseEntity<>(disposalGuidelineService.addGuideline(guideline), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<DisposalGuideline> updateGuideline(@PathVariable Long id, @RequestBody DisposalGuideline guideline) {
+    public ResponseEntity<DisposalGuideline> updateGuideline(@PathVariable Long id, @Valid @RequestBody DisposalGuideline guideline) {
         return ResponseEntity.ok(disposalGuidelineService.updateGuideline(id, guideline));
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteGuideline(@PathVariable Long id) {

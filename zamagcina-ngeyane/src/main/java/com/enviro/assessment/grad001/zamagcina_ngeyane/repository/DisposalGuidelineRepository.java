@@ -8,6 +8,5 @@ import java.util.List;
 
 @Repository
 public interface DisposalGuidelineRepository extends JpaRepository<DisposalGuideline, Long> {
-    // Custom query to find guidelines by waste category
     List<DisposalGuideline> findByWasteCategoryId(Long wasteCategoryId);
 }

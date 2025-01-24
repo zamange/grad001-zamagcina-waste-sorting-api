@@ -2,6 +2,7 @@ package com.enviro.assessment.grad001.zamagcina_ngeyane.controller;
 
 import com.enviro.assessment.grad001.zamagcina_ngeyane.entity.RecyclingTip;
 import com.enviro.assessment.grad001.zamagcina_ngeyane.service.RecyclingTipService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -36,14 +37,15 @@ public class RecyclingTipController {
     }
 
     @PostMapping
-    public ResponseEntity<RecyclingTip> addTip(@RequestBody RecyclingTip tip) {
+    public ResponseEntity<RecyclingTip> addTip(@Valid @RequestBody RecyclingTip tip) {
         return new ResponseEntity<>(recyclingTipService.addTip(tip), HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<RecyclingTip> updateTip(@PathVariable Long id, @RequestBody RecyclingTip tip) {
+    public ResponseEntity<RecyclingTip> updateTip(@PathVariable Long id, @Valid @RequestBody RecyclingTip tip) {
         return ResponseEntity.ok(recyclingTipService.updateTip(id, tip));
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTip(@PathVariable Long id) {
