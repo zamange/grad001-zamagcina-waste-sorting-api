@@ -27,7 +27,7 @@ run:
 	@echo "Running Spring Boot application..."
 	cd $(PROJECT_DIR) && $(MAVEN) $(SPRING_BOOT)
 
-# Custom target to stop the application (if needed)
+# Custom target to stop the application
 .PHONY: stop
 stop:
 	@echo "Stopping Spring Boot application..."
